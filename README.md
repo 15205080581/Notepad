@@ -124,6 +124,36 @@
 	}
 
 }
+#/**
+	 * 通过该函数显示数据
+	 */
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+
+		if(convertView == null){
+			convertView = inflater.inflate(R.layout.notepad_list_item,null);
+		}
+
+		TextView text = (TextView)convertView.findViewById(R.id.listItem);
+		text.setText(listItems.get(position));
+
+		TextView time = (TextView)convertView.findViewById(R.id.listItemTime);
+		String datetime = DateFormat.format("yyyy-MM-dd kk:mm:ss",
+				Long.parseLong(listItemTimes.get(position))).toString();
+		time.setText(datetime);
+
+		return convertView;
+	}
+//设置滑动监听器
+		listView.setOnScrollListener(this);
+		listView.setOnCreateContextMenuListener(new myOnCreateContextMenuListener());
+
+
+		//设置按钮监听器
+		addRecordButton.setOnClickListener(new AddRecordListener());//新增
+		deleteRecordButton.setOnClickListener(new DeleteRecordListener());//删除
+		checkRecordButton.setOnClickListener(new CheckRecordListener());//查看
+		modifyRecordButton.setOnClickListener(new ModifyRecordListener());//修改
 <img src="https://github.com/15205080581/Notepad/blob/master/imp/1.jpg">
 <img src="https://github.com/15205080581/Notepad/blob/master/imp/2.jpg">
 <img src="https://github.com/15205080581/Notepad/blob/master/imp/3.jpg">
